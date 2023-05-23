@@ -1482,6 +1482,8 @@ class RegexPatternValidationCheckTest {
         <?xml version="1.0" encoding="utf-8"?>
         <manifest package="org.oppia.android">
           <application android:name=".app.application.OppiaApplication">
+            <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+            <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />
             <activity
               android:name=".app.ExampleActivity"
               android:configChanges="orientation" />
@@ -1500,7 +1502,7 @@ class RegexPatternValidationCheckTest {
     assertThat(outContent.toString().trim())
       .isEqualTo(
         """
-        $stringFilePath:6: $androidActivityConfigChangesErrorMessage
+        $stringFilePath:8: $androidActivityConfigChangesErrorMessage
         $wikiReferenceNote
         """.trimIndent()
       )
@@ -1513,9 +1515,8 @@ class RegexPatternValidationCheckTest {
         <?xml version="1.0" encoding="utf-8"?>
         <manifest package="org.oppia.android">
           <application android:name=".app.application.OppiaApplication">
-            <meta-data
-              android:name="firebase_crashlytics_collection_enabled"
-              android:value="true" />
+            <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="true" />
+            <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />
           </application>
         </manifest>
       """.trimIndent()
@@ -1531,7 +1532,7 @@ class RegexPatternValidationCheckTest {
     assertThat(outContent.toString().trim())
       .isEqualTo(
         """
-        $stringFilePath:5: $androidManifestFirebaseCrashlyticsEnabledErrorMessage
+        $stringFilePath: $androidManifestFirebaseCrashlyticsEnabledErrorMessage
         $wikiReferenceNote
         """.trimIndent()
       )
@@ -1544,9 +1545,8 @@ class RegexPatternValidationCheckTest {
         <?xml version="1.0" encoding="utf-8"?>
         <manifest package="org.oppia.android">
           <application android:name=".app.application.OppiaApplication">
-            <meta-data
-              android:name="firebase_analytics_collection_deactivated"
-              android:value="false" />
+            <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
+            <meta-data android:name="firebase_analytics_collection_deactivated" android:value="false" />
           </application>
         </manifest>
       """.trimIndent()
@@ -1562,7 +1562,7 @@ class RegexPatternValidationCheckTest {
     assertThat(outContent.toString().trim())
       .isEqualTo(
         """
-        $stringFilePath:5: $androidManifestFirebaseAnalyticsEnabledErrorMessage
+        $stringFilePath: $androidManifestFirebaseAnalyticsEnabledErrorMessage
         $wikiReferenceNote
         """.trimIndent()
       )
